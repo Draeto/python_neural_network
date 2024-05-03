@@ -1,0 +1,34 @@
+@startuml diagramme
+interface IClassifier{
+ +train(X : ndarray[n,*], y : ndarray[n,1], split_percent : float) : void
+ +predict(X : ndarray[n,*]) : ndarray[1,*]
+ +report(imgpath : string)
+ +test() : ndarray[2,2]
+}
+class Neuron{
+    -learning_rate : float
+    -n_iter : int
+    -b : ndarray[1]
+    -W : ndarray[n,1]
+    +Neuron(learning_rate : float, n_iter : int)
+    {static}update()::Tuple[ndarray[n,1],float]
+    {static}initialisation(X:ndarray)::Tuple[ndarray[n,1],float]
+    {static}model()
+    {static}log_loss()
+    {static}gradient()
+    {static}update()
+
+}
+class NeuralNetwork{
+    -W : dict[int,ndarray[n[c],n[c-1]]]
+    -B : dict[int,ndarray[n[c],1]]
+    {static} initialisation()
+    {static} forward_propagation()
+    {static} back_propagation()
+    {static} update()
+}
+IClassifier<|-- SVMClassifier
+IClassifier<|-- KNNClassifier
+IClassifier<|-- Neuron
+IClassifier<|-- NeuralNetwork
+@enduml 
